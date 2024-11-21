@@ -20,7 +20,9 @@ This repository hosts the **Intelligent Query Engine**, an AI-driven query solut
 
 ## System Flow Chart
 
-This structure provides a high-level overview of how the various components interact in your Intelligent Query Engine project. **Intelligent Query Engine**:
+This structure provides a high-level overview of how the various components interact in your Intelligent Query Engine project. 
+
+**Intelligent Query Engine**:
 
 ```
                     +---------------------+
