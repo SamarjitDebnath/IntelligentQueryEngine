@@ -96,7 +96,7 @@ This repository includes an initial implementation in a notebook environment. Tr
 
 ![database](images/database.png)
 
-- 👨🏻‍💻 Output from the raw SQL query.
+- 👨🏻‍💻 Output from the raw SQL query
 
 ![raw sql query](images/raw_query.png)
 
