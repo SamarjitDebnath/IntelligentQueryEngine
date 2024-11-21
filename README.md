@@ -18,6 +18,59 @@ This repository hosts the **Intelligent Query Engine**, an AI-driven query solut
 4. **Scalability**: Designed to handle large datasets and complex queries with ease.
 5. **Modular Design**: Extensible architecture for integrating additional AI models or database systems.
 
+## System Flow Chart
+
+This structure provides a high-level overview of how the various components interact in your Intelligent Query Engine project. **Intelligent Query Engine**:
+
+```
+                    +---------------------+
+                    |    User Query       |
+                    | (Natural Language)  |
+                    +----------+----------+
+                               |
+                               v
+                   +-------------------------+
+                   | Google Gemini / Hugging |
+                   | Face Embeddings (NLP)   |
+                   +-----------+-------------+
+                               |
+                               v
+               +------------------------------+
+               |      LangChain (Workflow)    |
+               +-----------+------------------+
+                               |
+           +-------------------+------------------+
+           |                                      |
+           v                                      v
+  +------------------+                   +-------------------+
+  |   ChromaDB       |                   |   MySQL Database  |
+  | (Vector Storage) |                   |  (Structured Data)|
+  +------------------+                   +-------------------+
+           |                                      |
+           +-------------------+------------------+
+                               |
+                               v
+                   +--------------------------+
+                   |  SQL Query Generation    |
+                   |  (Data Fetching)         |
+                   +--------------------------+
+                               |
+                               v
+                   +--------------------------+
+                   |    Final Results         |
+                   |   (Returned to User)     |
+                   +--------------------------+
+```
+
+### Flow Explanation:
+1. **User Query (Natural Language)**: The user inputs a query in natural language.
+2. **Google Gemini / Hugging Face Embeddings**: These models process and embed the query into a format suitable for understanding and further processing.
+3. **LangChain**: Orchestrates the multi-step process and integrates different components.
+4. **ChromaDB**: Stores vector embeddings for context-based search, aiding in query understanding.
+5. **MySQL Database**: The relational database where the actual data resides.
+6. **SQL Query Generation**: Translates the processed natural language query into a precise SQL statement.
+7. **Final Results**: The result of the query execution is returned to the user.
+
 ## Applications
 
 - Business Intelligence: Ask complex questions about your data and receive actionable insights.
@@ -30,7 +83,17 @@ This repository hosts the **Intelligent Query Engine**, an AI-driven query solut
 This repository includes an initial implementation in a notebook environment. Transitioning to a production-ready system will involve deploying the components to a scalable infrastructure.
 
 ### Components
-1. **AI Model**: Google Gemini and Hugging Face embeddings (sentence-transformers/all-MiniLM-L6-v2) for query understanding.
+1. **AI Model**: Google Gemini and Hugging Face embeddings (`sentence-transformers/all-MiniLM-L6-v2`) for query understanding.
 2. **Vector Database**: ChromaDB for storing and retrieving embeddings.
 3. **Relational Database**: MySQL for structured data storage.
 4. **Orchestration**: LangChain for chaining steps like embedding retrieval, query generation, and data fetching.
+
+### Experiment Outcomes:
+
+- Output from the raw SQL query.
+
+![raw sql query](images/raw_query.png)
+
+- Output from the AI (LLM) prompt query
+
+![ai prompt query](images/ai_query.png)
