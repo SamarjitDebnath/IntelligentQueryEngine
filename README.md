@@ -84,7 +84,7 @@ This structure provides a high-level overview of how the various components inte
 
 This repository includes an initial implementation in a notebook environment. Transitioning to a production-ready system will involve deploying the components to a scalable infrastructure.
 
-### Components
+### 🛠 Components
 1. **AI Model**: Google Gemini and Hugging Face embeddings (`sentence-transformers/all-MiniLM-L6-v2`) for query understanding.
 2. **Vector Database**: ChromaDB for storing and retrieving embeddings.
 3. **Relational Database**: MySQL for structured data storage.
