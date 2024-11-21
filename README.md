@@ -90,6 +90,10 @@ This repository includes an initial implementation in a notebook environment. Tr
 
 ### Experiment Outcomes:
 
+- Snapshot of Database 
+
+![database](images/database.png)
+
 - Output from the raw SQL query.
 
 ![raw sql query](images/raw_query.png)
