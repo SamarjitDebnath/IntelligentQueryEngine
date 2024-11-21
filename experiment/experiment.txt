@@ -1,1 +1,1 @@
-This directory contains notebooks used for experiment.
+This directory contains notebooks utilized for experimentation.
