@@ -103,3 +103,5 @@ This repository includes an initial implementation in a notebook environment. Tr
 - 🦾 Output from the AI (LLM) prompt query
 
 ![ai prompt query](images/ai_query.png)
+
+##### Note: Utilized Google's `T4 GPU` to successfully complete this task.
