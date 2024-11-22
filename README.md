@@ -1,4 +1,4 @@
-# 🧠 Intelligent Query Engine: A Modern AI-Powered Query System
+# 🧠❓ Intelligent Query Engine: A Modern AI-Powered Query System
 
 This repository hosts the **Intelligent Query Engine**, an AI-driven query solution that integrates advanced natural language processing with robust database querying. The system leverages state-of-the-art AI models, vector databases, and traditional relational databases to provide seamless, intelligent interactions with your data.
 
@@ -15,7 +15,7 @@ This repository hosts the **Intelligent Query Engine**, an AI-driven query solut
 1. **Natural Language to SQL**: Users can ask questions in plain English, and the engine generates accurate SQL queries to fetch results from MySQL.
 2. **Semantic Search**: Find relevant information using vector-based similarity searches stored in ChromaDB.
 3. **Dynamic Context Management**: Adapts to user queries with contextual understanding powered by Google Gemini and Hugging Face embeddings.
-4. **Scalability**: Designed to handle large datasets and complex queries with ease.
+4. **Scalability**: Designed to handle large datasets and complex queries easily.
 5. **Modular Design**: Extensible architecture for integrating additional AI models or database systems.
 
 ## ⚙️ System Flow Chart
