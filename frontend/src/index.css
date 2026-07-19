@@ -1,0 +1,88 @@
+:root {
+  /* Terminal-inspired: soft-black background, phosphor green — deliberately not tied to
+     prefers-color-scheme, this look is the whole point. Lifted off true black and with
+     a brighter secondary text tone so it stays easy on the eyes at low brightness. */
+  --text: #8fc7a6;
+  --text-h: #d9f7e3;
+  --bg: #0d1210;
+  --bg-raised: #141b17;
+  --border: #253530;
+  --code-bg: #101613;
+  --accent: #4fe0a0;
+  --accent-bg: rgba(79, 224, 160, 0.09);
+  --accent-border: rgba(79, 224, 160, 0.38);
+  --danger: #ff8a7a;
+  --success: #4fe0a0;
+  --shadow:
+    rgba(0, 0, 0, 0.5) 0 10px 24px -8px, rgba(0, 0, 0, 0.3) 0 2px 6px -2px;
+  --glow-sm: 0 0 8px rgba(79, 224, 160, 0.35);
+  --glow-md: 0 0 18px rgba(79, 224, 160, 0.22);
+
+  --sans: "JetBrains Mono", ui-monospace, "SF Mono", Consolas, monospace;
+  --heading: "JetBrains Mono", ui-monospace, "SF Mono", Consolas, monospace;
+  --mono: "JetBrains Mono", ui-monospace, "SF Mono", Consolas, monospace;
+
+  font: 15px/160% var(--sans);
+  letter-spacing: 0.1px;
+  color-scheme: dark;
+  color: var(--text);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  width: 100%;
+  min-height: 100svh;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--heading);
+  font-weight: 600;
+  color: var(--text-h);
+}
+
+h1 {
+  font-size: 22px;
+  letter-spacing: -0.2px;
+  margin: 0;
+}
+h2 {
+  font-size: 15px;
+  line-height: 130%;
+  letter-spacing: 0;
+  margin: 0 0 8px;
+}
+p {
+  margin: 0;
+}
+
+code {
+  font-family: var(--mono);
+  display: inline-flex;
+  border-radius: 4px;
+  color: var(--accent);
+  font-size: 14px;
+  line-height: 135%;
+  padding: 3px 7px;
+  background: var(--code-bg);
+}
+
+button {
+  font-family: var(--sans);
+}

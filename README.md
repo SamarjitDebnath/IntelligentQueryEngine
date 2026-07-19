@@ -9,6 +9,10 @@ This repository hosts the **Intelligent Query Engine**, an AI-driven query solut
 - **MySQL Backend**: Queries structured data stored in a traditional relational database, ensuring compatibility with existing workflows.
 - **LangChain Integration**: Chains complex logic and workflows, enabling multi-step querying and decision-making.
 - **Notebook-Based Development**: Experimentation and prototyping in a flexible, interactive environment.
+- **FastAPI Backend + React (TypeScript) Frontend**: A full app built on top of the notebook prototype, with an explicit `plan → generate SQL → validate → execute → answer` pipeline.
+- **SQL Guardrails & Schema Verification**: Every generated query is checked against the live schema and restricted to safe, read-only, single-statement `SELECT`s before it's ever executed.
+- **Built-in Observability**: Per-request pipeline traces (per-stage timings and inputs/outputs) are recorded and exposed via the API.
+- **Validation Dataset**: A held-out set of question/SQL pairs scored for execution accuracy via `make eval`.
 
 ## 💡 Key Capabilities
 
@@ -80,14 +84,59 @@ This structure provides a high-level overview of how the various components inte
 - Research: Extract patterns and trends from structured datasets without SQL expertise.
 - Data Analytics Teams: Bridge the gap between technical and non-technical users by democratizing access to data.
 
+## 🏗️ Project Structure
+
+The notebook prototype has grown into a full app, split into a backend and frontend:
+
+```
+.
+├── backend/        # FastAPI service — pipeline, guardrails, tracing, eval (see backend/README.md)
+├── frontend/        # React + TypeScript UI (see frontend/README.md)
+├── experiment/      # Original notebooks used for prototyping (kept as reference)
+├── images/          # Screenshots referenced below
+└── Makefile         # One place to install, seed, run, and evaluate everything
+```
+
 ## 🚜 Getting Started
 
-This repository includes an initial implementation in a notebook environment. Transitioning to a production-ready system will involve deploying the components to a scalable infrastructure.
+This repository started as a notebook-based prototype (see `experiment/`) and has since grown
+into a runnable app: a FastAPI backend (`backend/`) and a React + TypeScript frontend
+(`frontend/`), tied together by the root `Makefile`. The app targets a local SQLite database
+by default, so there's no MySQL server to stand up — the original MySQL-based notebooks are
+kept as-is under `experiment/` for reference.
+
+### ⚡ Quickstart (Makefile)
+
+```bash
+make install   # uv sync (backend) + npm install (frontend)
+make seed      # create and seed the local SQLite inventory database
+```
+
+Add your Gemini API key to `backend/.env` (copy `backend/.env.example` if you haven't already —
+get a key at https://aistudio.google.com/apikey), then:
+
+```bash
+make dev       # run backend (:8000) and frontend (:5173) together, Ctrl-C stops both
+```
+
+Other useful targets:
+
+```bash
+make backend         # run only the FastAPI backend, with reload
+make frontend         # run only the Vite dev server
+make eval             # score the NL->SQL pipeline against the validation dataset
+make build-frontend   # type-check and build the frontend for production
+make clean            # remove venvs, node_modules, build output, and local data
+make help              # list all available targets
+```
+
+Open http://localhost:5173 once `make dev` is running — ask a question, and inspect the
+generated SQL, the plan, and the full pipeline trace in the UI.
 
 ### 🛠 Components
 1. **AI Model**: Google Gemini and Hugging Face embeddings (`sentence-transformers/all-MiniLM-L6-v2`) for query understanding.
 2. **Vector Database**: ChromaDB for storing and retrieving embeddings.
-3. **Relational Database**: MySQL for structured data storage.
+3. **Relational Database**: MySQL for the original notebook prototype; SQLite for the `backend/` app.
 4. **Orchestration**: LangChain for chaining steps like embedding retrieval, query generation, and data fetching.
 
 ### 🔬 Experiment Outcomes:
@@ -104,4 +153,22 @@ This repository includes an initial implementation in a notebook environment. Tr
 
 ![ai prompt query](images/ai_query.png)
 
-##### Note: Utilized `T4 GPU` in Google Colab-Notebook to complete this task.
+##### Note: Utilized `T4 GPU` in Google Colab-Notebook to complete the experiment.
+
+### 📸 Application Screenshots
+
+- Answer view — a question, the generated SQL, the plan, and the result rows:
+
+![Answer view](images/app_answer.jpeg)
+
+- Pipeline trace — every stage (`input_safety → plan → generate_sql → validate_sql → execute_sql → synthesize_answer`), with per-stage timing and detail on click:
+
+![Pipeline trace view](images/app_trace.jpeg)
+
+- Menu — switch views or drill into the live DB schema, collapsed until clicked:
+
+![Menu with schema](images/app_menu.jpeg)
+
+- Validation — the held-out question/SQL dataset scored for execution accuracy via `make eval`:
+
+![Validation dataset view](images/app_validation.jpeg)
